@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %}Recommended Projects | Mentor Platform{% endblock %}
+{% block content %}
+<section class="hero projects-hero">
+  <div>
+    <p class="section-label">Projects</p>
+    <h1>Personalized project recommendations</h1>
+    <p>Projects matched to your assessment strengths and skill levels. Build practical experience with guided, real-world work.</p>
+  </div>
+  <div class="hero-panel">
+    <div class="stat-card">
+      <span class="stat-label">Your skills</span>
+      <strong>{{ user_skills|length }}</strong>
+      <p>Detected from your assessment results.</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Project count</span>
+      <strong>{{ projects|length }}</strong>
+      <p>Recommended for your current level.</p>
+    </div>
+  </div>
+</section>
+
+{% if not has_results %}
+  <div class="alert">
+    Complete some assessments first to get recommendations tailored to your skill level.
+  </div>
+{% endif %}
+
+{% if projects %}
+  <div class="project-grid">
+    {% for project in projects %}
+      <article class="project-card">
+        <div class="project-header">
+          <h3>{{ project.title }}</h3>
+          <span class="badge">{{ project.level|title }}</span>
+        </div>
+        <p class="project-description">{{ project.description|truncatewords:28 }}</p>
+        <div class="project-meta">
+          <span><strong>{{ project.estimated_hours }}h</strong> estimate</span>
+          <span>{{ project.skills_required.count }} skill{{ project.skills_required.count|pluralize }}</span>
+        </div>
+        <div class="skill-tags">
+          {% for skill in project.skills_required.all %}
+            <span class="tag">{{ skill.name }}</span>
+          {% endfor %}
+        </div>
+        {% if project.github_template or project.resources_list %}
+          <div class="project-actions">
+            {% if project.github_template %}
+              <a class="btn btn-secondary" href="{{ project.github_template }}" target="_blank">View template</a>
+            {% endif %}
+            {% if project.resources_list %}
+              <button class="btn btn-primary" type="button" onclick="document.getElementById('resources-{{ forloop.counter }}').classList.toggle('hidden')">Resources</button>
+            {% endif %}
+          </div>
+          {% if project.resources_list %}
+            <ul id="resources-{{ forloop.counter }}" class="resource-list hidden">
+              {% for resource in project.resources_list %}
+                <li><a href="{{ resource }}" target="_blank">{{ resource }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert">No recommended projects are available right now.</div>
+{% endif %}
+
+<style>
+.projects-hero {
+  grid-template-columns: 1.6fr 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+.project-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 1.5rem;
+}
+.project-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.project-description {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.project-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tag {
+  display: inline-flex;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1d4ed8;
+  font-size: 0.85rem;
+}
+.project-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.resource-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+.hidden {
+  display: none;
+}
+</style>
+{% endblock %}

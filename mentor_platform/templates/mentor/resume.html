@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Resume Analyzer | Mentor Platform{% endblock %}
+{% block content %}
+<div class="hero" style="padding: 2rem 0;">
+  <div>
+    <h1>Resume analyzer</h1>
+    <p>Upload your resume and get role-specific improvement suggestions instantly.</p>
+  </div>
+</div>
+
+<div class="form-card">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="resume">Upload resume (PDF)</label>
+      <input id="resume" name="resume" type="file" accept="application/pdf" required>
+    </div>
+    <div class="form-group">
+      <label for="target_role">Target role</label>
+      <input id="target_role" name="target_role" type="text" value="Software Engineer" placeholder="e.g. Product Manager">
+    </div>
+    <button class="btn btn-primary" type="submit">Analyze resume</button>
+  </form>
+</div>
+
+{% if analysis %}
+  <div class="card" style="margin-top: 1.5rem;">
+    <h2>Resume insights</h2>
+    <pre style="white-space: pre-wrap; margin: 0;">{{ analysis }}</pre>
+  </div>
+{% endif %}
+{% endblock %}

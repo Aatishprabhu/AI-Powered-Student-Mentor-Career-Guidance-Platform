@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register | Mentor Platform{% endblock %}
+{% block content %}
+<div class="hero" style="padding: 2rem;">
+  <div>
+    <h1>Create your account.</h1>
+    <p>Register as a student to start assessments, explore projects, and connect with a mentor assistant.</p>
+  </div>
+  <div class="form-card" style="max-width: 520px; width: 100%;">
+    <h2 style="margin-top:0;">Sign Up</h2>
+    {% if form.errors %}
+      <div class="alert" style="border-color: var(--danger); color: #991b1b; background: #fee2e2;">
+        <strong>We couldn't create your account.</strong>
+        <ul style="margin:0.75rem 0 0 1.2rem; padding:0; list-style: disc; color:#7f1d1d;">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.username.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+        {{ form.password1.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.college.label_tag }}
+        {{ form.college }}
+        {{ form.college.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.graduation_year.label_tag }}
+        {{ form.graduation_year }}
+        {{ form.graduation_year.errors }}
+      </div>
+      <button class="btn btn-primary" type="submit">Create account</button>
+    </form>
+    <p style="margin-top: 1rem; color: var(--muted);">Already have an account? <a href="{% url 'accounts:login' %}">Login</a></p>
+  </div>
+</div>
+{% endblock %}

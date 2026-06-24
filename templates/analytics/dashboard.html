@@ -1,0 +1,43 @@
+<canvas id="scoreChart" width="400" height="200"></canvas>
+<canvas id="placementChart" width="200" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+fetch('/analytics/data/')
+    .then(r => r.json())
+    .then(data => {
+        
+        new Chart(document.getElementById('scoreChart'), {
+            type: 'line',
+            data: {
+                labels: data.scores.labels,
+                datasets: [{
+                    label: 'Assessment Scores (%)',
+                    data: data.scores.scores,
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                }]
+            },
+            options: { responsive: true, scales: { y: { min: 0, max: 100 } } }
+        });
+
+        
+        new Chart(document.getElementById('placementChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Applied', 'Interview', 'Offer', 'Rejected'],
+                datasets: [{
+                    data: [
+                        data.placements.applied,
+                        data.placements.interview,
+                        data.placements.offer,
+                        data.placements.rejected
+                    ],
+                    backgroundColor: ['#6366f1', '#f59e0b', '#10b981', '#ef4444'],
+                }]
+            },
+        });
+    });
+</script>

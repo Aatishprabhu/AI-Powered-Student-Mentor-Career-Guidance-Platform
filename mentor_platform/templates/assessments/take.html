@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Take Assessment | Mentor Platform{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="hero" style="padding: 2rem 0;">
+    <div>
+      <h1>{{ assessment.title }}</h1>
+      <p class="muted">Skill: {{ assessment.skill.name }} · Duration: {{ assessment.duration_minutes }} min · Total marks: {{ assessment.total_marks }}</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form method="post">
+      {% csrf_token %}
+      {% for question in questions %}
+        <div class="card" style="margin-bottom: 1rem;">
+          <h3 style="margin-top: 0;">Question {{ forloop.counter }}</h3>
+          <p>{{ question.text }}</p>
+          <div class="form-group">
+            <label><input type="radio" name="q_{{ question.id }}" value="A"> A) {{ question.option_a }}</label>
+          </div>
+          <div class="form-group">
+            <label><input type="radio" name="q_{{ question.id }}" value="B"> B) {{ question.option_b }}</label>
+          </div>
+          <div class="form-group">
+            <label><input type="radio" name="q_{{ question.id }}" value="C"> C) {{ question.option_c }}</label>
+          </div>
+          <div class="form-group">
+            <label><input type="radio" name="q_{{ question.id }}" value="D"> D) {{ question.option_d }}</label>
+          </div>
+        </div>
+      {% endfor %}
+      <button class="btn btn-primary" type="submit">Submit Assessment</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Mentor Chat | Mentor Platform{% endblock %}
+{% block content %}
+<div class="hero" style="padding: 2rem 0;">
+  <div>
+    <h1>Your mentor assistant</h1>
+    <p>Ask questions, get guidance, and review your latest conversation with AI-backed mentoring.</p>
+  </div>
+</div>
+
+<div class="card-grid">
+  <div class="card" style="grid-column: span 2; padding: 2rem;">
+    <div id="chat-feed" style="display:grid; gap: 1rem;">
+      {% for chat in chats %}
+        <div class="card" style="background: #eef2ff;">
+          <strong>You</strong>
+          <p>{{ chat.message }}</p>
+        </div>
+        <div class="card" style="background: #f8fafc;">
+          <strong>Mentor</strong>
+          <p>{{ chat.response }}</p>
+        </div>
+      {% endfor %}
+      {% if not chats %}
+        <p class="alert">Start a conversation with your mentor assistant below.</p>
+      {% endif %}
+    </div>
+
+    <form id="mentor-form" class="form-card" style="margin-top: 1rem;" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <textarea id="message" name="message" rows="4" placeholder="Ask your mentor anything" required></textarea>
+      </div>
+      <button class="btn btn-primary" type="button" id="send-message">Send message</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const sendButton = document.getElementById('send-message');
+  const messageInput = document.getElementById('message');
+  const chatFeed = document.getElementById('chat-feed');
+
+  sendButton?.addEventListener('click', async () => {
+    const message = messageInput.value.trim();
+    if (!message) return;
+
+    const responseBox = document.createElement('div');
+    responseBox.className = 'card';
+    responseBox.innerHTML = '<strong>Mentor</strong><p>Typing...</p>';
+    chatFeed.appendChild(responseBox);
+
+    const res = await fetch('{% url "mentor:send_message" %}', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}',
+      },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+    responseBox.querySelector('p').innerText = data.response || 'Unable to send message.';
+    messageInput.value = '';
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block title %}Progress Analytics{% endblock %}
+
+{% block content %}
+<div class="page-title">
+  <h1>Progress Analytics</h1>
+  <p>Track your assessment performance, skill growth, and placement readiness in one place.</p>
+</div>
+
+<div class="card-grid">
+  <div class="card">
+    <h3>Total Assessments</h3>
+    <p class="metric">{{ total_assessments }}</p>
+  </div>
+  <div class="card">
+    <h3>Average Score</h3>
+    <p class="metric">{{ average_score }}%</p>
+  </div>
+  <div class="card">
+    <h3>Latest Level</h3>
+    <p class="metric">{{ latest_level }}</p>
+  </div>
+  <div class="card">
+    <h3>Placement Status</h3>
+    <p class="metric">{{ placement_data.interview }} interviews</p>
+    <p class="muted">Offers: {{ placement_data.offer }} · Rejected: {{ placement_data.rejected }}</p>
+  </div>
+</div>
+
+<div class="card-grid">
+  <div class="card" style="grid-column: span 2;">
+    <div class="section-title">Performance Over Time</div>
+    {% if score_series %}
+      <div class="timeline">
+        {% for item in score_series %}
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <span>{{ item.date }}</span>
+              <span class="badge">{{ item.level }}</span>
+            </div>
+            <div class="progress-row">
+              <div class="progress-bar" style="width: {{ item.score_pct }}%;"></div>
+              <span class="progress-label">{{ item.score_pct }}%</span>
+            </div>
+            <div class="timeline-meta">{{ item.assessment }} · {{ item.skill }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No assessment results available yet. Take an assessment to populate your analytics.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <div class="section-title">Skill Performance</div>
+    {% if skill_performance %}
+      <div class="skill-list">
+        {% for skill in skill_performance %}
+          <div class="skill-item">
+            <div class="skill-meta">
+              <strong>{{ skill.skill }}</strong>
+              <span>{{ skill.attempts }} attempt{{ skill.attempts|pluralize }}</span>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" style="width: {{ skill.avg_score }}%;"></div>
+              <span class="skill-score">{{ skill.avg_score }}%</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>You have no skill data yet. Complete an assessment to start tracking skill growth.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">Recent Results</div>
+  {% if recent_results %}
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Assessment</th>
+            <th>Skill</th>
+            <th>Score</th>
+            <th>Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in recent_results %}
+            <tr>
+              <td>{{ item.date }}</td>
+              <td>{{ item.assessment }}</td>
+              <td>{{ item.skill }}</td>
+              <td>{{ item.score_pct }}%</td>
+              <td>{{ item.level }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No recent assessment results available yet.</p>
+  {% endif %}
+</div>
+
+<style>
+.metric {
+  margin: 1rem 0 0;
+  font-size: 2.5rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+.timeline {
+  display: grid;
+  gap: 1rem;
+}
+.timeline-item {
+  padding: 1rem;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.progress-row {
+  display: grid;
+  gap: 0.5rem;
+}
+.progress-bar {
+  height: 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), #7dd3fc);
+}
+.progress-label {
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-align: right;
+}
+.timeline-meta {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.skill-list {
+  display: grid;
+  gap: 1rem;
+}
+.skill-item {
+  display: grid;
+  gap: 0.5rem;
+}
+.skill-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+}
+.skill-bar-wrap {
+  position: relative;
+  background: #e2e8f0;
+  border-radius: 999px;
+  height: 1rem;
+}
+.skill-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+}
+.skill-score {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  color: #ffffff;
+}
+.badge {
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+</style>
+{% endblock %}

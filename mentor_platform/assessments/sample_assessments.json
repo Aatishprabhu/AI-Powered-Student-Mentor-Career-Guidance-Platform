@@ -1,0 +1,320 @@
+[
+  {
+    "title": "Python Fundamentals",
+    "skill": {"name": "Python", "category": "Programming", "icon": "python"},
+    "duration_minutes": 20,
+    "total_marks": 20,
+    "questions": [
+      {
+        "text": "What is the output of print(2 ** 3)?",
+        "option_a": "5",
+        "option_b": "6",
+        "option_c": "8",
+        "option_d": "9",
+        "correct_option": "C",
+        "marks": 2
+      },
+      {
+        "text": "Which keyword is used to define a function in Python?",
+        "option_a": "func",
+        "option_b": "def",
+        "option_c": "function",
+        "option_d": "define",
+        "correct_option": "B",
+        "marks": 2
+      },
+      {
+        "text": "What does list.append(item) do?",
+        "option_a": "Replaces the last item",
+        "option_b": "Adds item to the end",
+        "option_c": "Removes the item",
+        "option_d": "Sorts the list",
+        "correct_option": "B",
+        "marks": 2
+      },
+      {
+        "text": "Which type stores true/false values?",
+        "option_a": "int",
+        "option_b": "str",
+        "option_c": "bool",
+        "option_d": "float",
+        "correct_option": "C",
+        "marks": 2
+      },
+      {
+        "text": "How do you start a comment in Python?",
+        "option_a": "//",
+        "option_b": "#",
+        "option_c": "/*",
+        "option_d": "<!--",
+        "correct_option": "B",
+        "marks": 2
+      }
+    ]
+  },
+  {
+    "title": "Data Structures Basics",
+    "skill": {"name": "Data Structures", "category": "Computer Science", "icon": "data"},
+    "duration_minutes": 25,
+    "total_marks": 25,
+    "questions": [
+      {
+        "text": "Which DS uses FIFO order?",
+        "option_a": "Stack",
+        "option_b": "Queue",
+        "option_c": "Tree",
+        "option_d": "Graph",
+        "correct_option": "B",
+        "marks": 5
+      },
+      {
+        "text": "What is the time complexity of accessing an array element by index?",
+        "option_a": "O(1)",
+        "option_b": "O(n)",
+        "option_c": "O(log n)",
+        "option_d": "O(n log n)",
+        "correct_option": "A",
+        "marks": 5
+      },
+      {
+        "text": "Which structure is best for hierarchical data?",
+        "option_a": "Array",
+        "option_b": "Linked List",
+        "option_c": "Tree",
+        "option_d": "Stack",
+        "correct_option": "C",
+        "marks": 5
+      },
+      {
+        "text": "Which DS is used by recursion with function calls?",
+        "option_a": "Queue",
+        "option_b": "Stack",
+        "option_c": "Graph",
+        "option_d": "Hash Map",
+        "correct_option": "B",
+        "marks": 5
+      },
+      {
+        "text": "A hash table provides average-case complexity of:",
+        "option_a": "O(n)",
+        "option_b": "O(log n)",
+        "option_c": "O(1)",
+        "option_d": "O(n^2)",
+        "correct_option": "C",
+        "marks": 5
+      }
+    ]
+  },
+  {
+    "title": "Career & Soft Skills Check",
+    "skill": {"name": "Career Skills", "category": "Professional Development", "icon": "career"},
+    "duration_minutes": 15,
+    "total_marks": 15,
+    "questions": [
+      {
+        "text": "Which quality is most important for teamwork?",
+        "option_a": "Isolation",
+        "option_b": "Communication",
+        "option_c": "Competition",
+        "option_d": "Control",
+        "correct_option": "B",
+        "marks": 3
+      },
+      {
+        "text": "What is an example of a strong work habit?",
+        "option_a": "Procrastination",
+        "option_b": "Punctuality",
+        "option_c": "Indecision",
+        "option_d": "Neglect",
+        "correct_option": "B",
+        "marks": 3
+      },
+      {
+        "text": "Which is a key interview skill?",
+        "option_a": "Listening carefully",
+        "option_b": "Ignoring questions",
+        "option_c": "Arriving late",
+        "option_d": "Avoiding eye contact",
+        "correct_option": "A",
+        "marks": 3
+      },
+      {
+        "text": "What does growth mindset mean?",
+        "option_a": "Believing abilities can improve",
+        "option_b": "Avoiding new challenges",
+        "option_c": "Sticking to the same skills",
+        "option_d": "Accepting failure without learning",
+        "correct_option": "A",
+        "marks": 3
+      },
+      {
+        "text": "Good time management includes:",
+        "option_a": "Waiting until the last minute",
+        "option_b": "Prioritizing tasks",
+        "option_c": "Ignoring deadlines",
+        "option_d": "Multitasking everything at once",
+        "correct_option": "B",
+        "marks": 3
+      }
+    ]
+  },
+  {
+    "title": "Computer Networks Fundamentals",
+    "skill": {"name": "Computer Networks", "category": "IT Fundamentals", "icon": "network"},
+    "duration_minutes": 20,
+    "total_marks": 20,
+    "questions": [
+      {
+        "text": "What does TCP stand for?",
+        "option_a": "Transmission Control Protocol",
+        "option_b": "Transfer Communication Process",
+        "option_c": "Transport Control Procedure",
+        "option_d": "Transmission Communication Path",
+        "correct_option": "A",
+        "marks": 4
+      },
+      {
+        "text": "Which OSI layer handles routing?",
+        "option_a": "Physical",
+        "option_b": "Transport",
+        "option_c": "Network",
+        "option_d": "Application",
+        "correct_option": "C",
+        "marks": 4
+      },
+      {
+        "text": "What is the purpose of DNS?",
+        "option_a": "Translate domain names to IP addresses",
+        "option_b": "Encrypt network traffic",
+        "option_c": "Manage file transfers",
+        "option_d": "Monitor network devices",
+        "correct_option": "A",
+        "marks": 4
+      },
+      {
+        "text": "Which device connects multiple networks?",
+        "option_a": "Switch",
+        "option_b": "Router",
+        "option_c": "Repeater",
+        "option_d": "Hub",
+        "correct_option": "B",
+        "marks": 4
+      },
+      {
+        "text": "An IP address is used to:",
+        "option_a": "Authenticate users",
+        "option_b": "Identify devices on a network",
+        "option_c": "Encrypt files",
+        "option_d": "Manage memory",
+        "correct_option": "B",
+        "marks": 4
+      }
+    ]
+  },
+  {
+    "title": "Operating Systems Basics",
+    "skill": {"name": "Operating Systems", "category": "IT Fundamentals", "icon": "os"},
+    "duration_minutes": 20,
+    "total_marks": 20,
+    "questions": [
+      {
+        "text": "What is a process?",
+        "option_a": "A program stored on disk",
+        "option_b": "A running instance of a program",
+        "option_c": "A hardware component",
+        "option_d": "A user account",
+        "correct_option": "B",
+        "marks": 4
+      },
+      {
+        "text": "Virtual memory is used to:",
+        "option_a": "Extend RAM using disk storage",
+        "option_b": "Store files permanently",
+        "option_c": "Manage CPU instructions",
+        "option_d": "Connect to the internet",
+        "correct_option": "A",
+        "marks": 4
+      },
+      {
+        "text": "Which OS component schedules tasks?",
+        "option_a": "Process scheduler",
+        "option_b": "File manager",
+        "option_c": "Memory manager",
+        "option_d": "Device driver",
+        "correct_option": "A",
+        "marks": 4
+      },
+      {
+        "text": "What is multitasking?",
+        "option_a": "Running one program at a time",
+        "option_b": "Running multiple programs simultaneously",
+        "option_c": "Saving files automatically",
+        "option_d": "Backing up data",
+        "correct_option": "B",
+        "marks": 4
+      },
+      {
+        "text": "Which structure is a kernel type?",
+        "option_a": "Microkernel",
+        "option_b": "Browser",
+        "option_c": "Web server",
+        "option_d": "Database",
+        "correct_option": "A",
+        "marks": 4
+      }
+    ]
+  },
+  {
+    "title": "Aptitude Test",
+    "skill": {"name": "Aptitude", "category": "General Ability", "icon": "aptitude"},
+    "duration_minutes": 20,
+    "total_marks": 20,
+    "questions": [
+      {
+        "text": "If 4x + 8 = 24, what is x?",
+        "option_a": "2",
+        "option_b": "3",
+        "option_c": "4",
+        "option_d": "5",
+        "correct_option": "B",
+        "marks": 4
+      },
+      {
+        "text": "What comes next in the sequence 3, 6, 12, 24, __?",
+        "option_a": "30",
+        "option_b": "36",
+        "option_c": "48",
+        "option_d": "42",
+        "correct_option": "C",
+        "marks": 4
+      },
+      {
+        "text": "A train travels 90 km in 1.5 hours. What is its speed?",
+        "option_a": "55 km/h",
+        "option_b": "60 km/h",
+        "option_c": "65 km/h",
+        "option_d": "70 km/h",
+        "correct_option": "B",
+        "marks": 4
+      },
+      {
+        "text": "If 5 books cost 250, how much do 3 books cost?",
+        "option_a": "125",
+        "option_b": "135",
+        "option_c": "150",
+        "option_d": "160",
+        "correct_option": "C",
+        "marks": 4
+      },
+      {
+        "text": "Which number is the odd one out? 2, 3, 5, 8, 11",
+        "option_a": "2",
+        "option_b": "3",
+        "option_c": "5",
+        "option_d": "8",
+        "correct_option": "D",
+        "marks": 4
+      }
+    ]
+  }
+]

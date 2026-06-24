@@ -1,0 +1,244 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary)}
+.page{max-width:900px;margin:0 auto;padding:2rem 1.5rem 3rem}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-bottom:2rem}
+@media(max-width:660px){.hero{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr 1fr}}
+
+.kicker{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:0.5rem}
+.hero-name{font-size:28px;font-weight:500;line-height:1.2;margin-bottom:0.6rem}
+.hero-sub{font-size:14px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:1.5rem;max-width:320px}
+
+.btn-row{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:8px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);cursor:pointer;text-decoration:none;transition:background .15s}
+.btn-primary{background:var(--color-text-primary);color:var(--color-background-primary);border-color:transparent}
+.btn-primary:hover{opacity:.88}
+.btn-ghost{background:transparent;color:var(--color-text-primary)}
+.btn-ghost:hover{background:var(--color-background-secondary)}
+
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px}
+.stat-label{font-size:11px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px}
+.stat-num{font-size:26px;font-weight:500;line-height:1;margin-bottom:4px}
+.stat-hint{font-size:12px;color:var(--color-text-secondary)}
+.accent-green .stat-num{color:var(--color-text-success)}
+.accent-blue .stat-num{color:var(--color-text-info)}
+
+.prog-shell{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.prog-title{font-size:13px;font-weight:500}
+.prog-pct{font-size:13px;font-weight:500;color:var(--color-text-secondary)}
+.prog-sub{font-size:12px;color:var(--color-text-tertiary);margin-bottom:12px}
+.prog-bar{height:5px;background:var(--color-background-secondary);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:var(--color-text-primary);border-radius:100px;width:34%}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+@media(max-width:660px){.grid-2{grid-template-columns:1fr}}
+
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:20px}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;padding-bottom:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.card-title{font-size:14px;font-weight:500}
+.card-meta{font-size:12px;color:var(--color-text-tertiary)}
+
+.action-list{display:flex;flex-direction:column;gap:1px}
+.action-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.action-item:last-child{border-bottom:none;padding-bottom:0}
+.action-num{width:22px;height:22px;border-radius:50%;border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-secondary);flex-shrink:0;margin-top:1px}
+.action-body{flex:1}
+.action-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.action-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:6px}
+.action-link{font-size:12px;color:var(--color-text-info);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.action-link:hover{text-decoration:underline}
+
+.results-table{width:100%;border-collapse:collapse;font-size:13px}
+.results-table th{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-tertiary);text-align:left;padding:0 0 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.results-table td{padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+.results-table tr:last-child td{border-bottom:none}
+.level-badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 8px;border-radius:100px;background:var(--color-background-info);color:var(--color-text-info)}
+
+.empty-state{text-align:center;padding:2rem 1rem}
+.empty-icon{width:36px;height:36px;margin:0 auto 10px;color:var(--color-text-tertiary)}
+.empty-title{font-size:13px;font-weight:500;margin-bottom:4px}
+.empty-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px}
+
+.roadmap-card{margin-bottom:0}
+.roadmap-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.roadmap-body{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
+@media(max-width:560px){.roadmap-body{grid-template-columns:1fr}}
+.skill-name{font-size:18px;font-weight:500;margin-bottom:4px}
+.skill-target{font-size:12px;color:var(--color-text-tertiary);margin-bottom:1rem}
+.metrics{display:flex;gap:1.5rem}
+.metric-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-tertiary);margin-bottom:3px;font-weight:500}
+.metric-val{font-size:16px;font-weight:500}
+
+.section-divider{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-tertiary);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.section-divider::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary)}
+</style>
+
+<div class="page">
+
+  <section class="hero">
+    <div>
+      <p class="kicker">Welcome back</p>
+      <h1 class="hero-name">Hello, Alex.</h1>
+      <p class="hero-sub">Track your progress, discover what to do next, and keep your placement applications moving.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#">
+          <i class="ti ti-bolt" aria-hidden="true" style="font-size:14px"></i>
+          Start assessment
+        </a>
+        <a class="btn btn-ghost" href="#">
+          <i class="ti ti-folder" aria-hidden="true" style="font-size:14px"></i>
+          Explore projects
+        </a>
+        <a class="btn btn-ghost" href="#">
+          <i class="ti ti-message" aria-hidden="true" style="font-size:14px"></i>
+          Chat with mentor
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Assessments</div>
+          <div class="stat-num">7</div>
+          <div class="stat-hint">Completed</div>
+        </div>
+        <div class="stat accent-green">
+          <div class="stat-label">Placements</div>
+          <div class="stat-num">3</div>
+          <div class="stat-hint">2 offers received</div>
+        </div>
+        <div class="stat accent-blue">
+          <div class="stat-label">Roadmap</div>
+          <div class="stat-num">34%</div>
+          <div class="stat-hint">React Native</div>
+        </div>
+      </div>
+
+      <div class="prog-shell">
+        <div class="prog-top">
+          <span class="prog-title">Overall progress</span>
+          <span class="prog-pct">34%</span>
+        </div>
+        <div class="prog-sub">A quick snapshot of your learning momentum.</div>
+        <div class="prog-bar">
+          <div class="prog-fill"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="section-divider" style="margin-bottom:12px">Activity</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Next best actions</span>
+        <span class="card-meta">Based on your activity</span>
+      </div>
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div class="action-body">
+            <div class="action-name">Assess</div>
+            <div class="action-desc">Take a short assessment to level up your roadmap recommendations.</div>
+            <a class="action-link" href="#">Go to assessments <i class="ti ti-arrow-right" aria-hidden="true" style="font-size:12px"></i></a>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div class="action-body">
+            <div class="action-name">Build</div>
+            <div class="action-desc">Work on a project that matches your current skill focus.</div>
+            <a class="action-link" href="#">Explore projects <i class="ti ti-arrow-right" aria-hidden="true" style="font-size:12px"></i></a>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">3</div>
+          <div class="action-body">
+            <div class="action-name">Apply</div>
+            <div class="action-desc">Review your placement applications and keep momentum.</div>
+            <a class="action-link" href="#">View placements <i class="ti ti-arrow-right" aria-hidden="true" style="font-size:12px"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Recent results</span>
+        <span class="card-meta">Your latest attempts</span>
+      </div>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Assessment</th>
+            <th style="text-align:right">Score</th>
+            <th style="text-align:right">Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>JavaScript Fundamentals</td>
+            <td style="text-align:right;font-variant-numeric:tabular-nums">42/50</td>
+            <td style="text-align:right"><span class="level-badge">Advanced</span></td>
+          </tr>
+          <tr>
+            <td>React Hooks</td>
+            <td style="text-align:right;font-variant-numeric:tabular-nums">36/50</td>
+            <td style="text-align:right"><span class="level-badge" style="background:var(--color-background-success);color:var(--color-text-success)">Intermediate</span></td>
+          </tr>
+          <tr>
+            <td>CSS Layout</td>
+            <td style="text-align:right;font-variant-numeric:tabular-nums">28/50</td>
+            <td style="text-align:right"><span class="level-badge" style="background:var(--color-background-warning);color:var(--color-text-warning)">Beginner</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="section-divider" style="margin:1.5rem 0 12px">Roadmap</p>
+
+  <div class="card roadmap-card">
+    <div class="roadmap-top">
+      <div>
+        <p class="card-title" style="margin-bottom:2px">Roadmap focus</p>
+        <p class="card-meta">Your current recommended skill path.</p>
+      </div>
+      <a class="btn btn-ghost" href="#" style="font-size:12px;padding:6px 12px">
+        <i class="ti ti-chart-bar" aria-hidden="true" style="font-size:13px"></i>
+        View analytics
+      </a>
+    </div>
+    <div class="roadmap-body">
+      <div>
+        <div class="skill-name">React Native</div>
+        <div class="skill-target">Target: Aug 12, 2026</div>
+        <div class="metrics">
+          <div>
+            <div class="metric-label">Completion</div>
+            <div class="metric-val">34%</div>
+          </div>
+          <div>
+            <div class="metric-label">Next step</div>
+            <div class="metric-val" style="font-size:13px;margin-top:4px;color:var(--color-text-secondary)">Assessment + practice</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:12px;color:var(--color-text-tertiary)">Momentum</span>
+          <span style="font-size:12px;font-weight:500">34%</span>
+        </div>
+        <div class="prog-bar" style="margin-bottom:8px"><div class="prog-fill"></div></div>
+        <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">Keep going — small steps compound quickly.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

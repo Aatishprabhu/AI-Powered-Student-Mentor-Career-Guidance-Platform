@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Assessments{% endblock %}
+
+{% block content %}
+<section class="hero assessment-hero">
+  <div>
+    <p class="section-label">Assessments</p>
+    <h1>Build confidence with guided skill checks.</h1>
+    <p>Complete practice assessments that track your progress, skill mastery, and readiness for placements.</p>
+  </div>
+  <div class="hero-panel">
+    <div class="stat-card">
+      <span class="stat-label">Available</span>
+      <strong>{{ assessments|length }}</strong>
+      <p>Assessments ready to start right now.</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Tracks</span>
+      <strong>{{ track_count }}</strong>
+      <p>Skill areas covered by assessments.</p>
+    </div>
+  </div>
+  {% if categories %}
+    <div class="category-banner">
+      <strong>Tracks:</strong> {{ categories|join:", " }}
+    </div>
+  {% endif %}
+</section>
+
+{% if assessments %}
+  <div class="assessment-grid">
+    {% for assessment in assessments %}
+      <article class="assessment-card">
+        <div class="assessment-top">
+          <span class="assessment-tag">{{ assessment.skill.name }}</span>
+          <strong>{{ assessment.title }}</strong>
+        </div>
+        <p class="assessment-description">Test your knowledge with a focused assessment on {{ assessment.skill.name }} concepts and career readiness.</p>
+        <div class="assessment-meta">
+          <span><strong>{{ assessment.duration_minutes }}m</strong> Duration</span>
+          <span><strong>{{ assessment.total_marks }}</strong> Marks</span>
+          <span class="category-label">{{ assessment.skill.category }}</span>
+        </div>
+        <div class="assessment-footer">
+          <a class="btn btn-primary" href="{% url 'assessments:take' assessment_id=assessment.id %}">Start now</a>
+          <span class="badge">Recommended</span>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="card">
+    <h2>No assessments available</h2>
+    <p class="muted">Sample assessments are generated automatically from JSON data. Refresh the page after logging in to load them.</p>
+  </div>
+{% endif %}
+
+<style>
+  .category-banner {
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    background: rgba(59, 130, 246, 0.08);
+    color: #1d4ed8;
+    font-weight: 600;
+  }
+  .assessment-card {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .assessment-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.25);
+  }
+  .assessment-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: var(--muted);
+  }
+  .category-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #1d4ed8;
+    font-size: 0.85rem;
+  }
+  .assessment-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .assessment-footer .badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+</style>
+{% endblock %}

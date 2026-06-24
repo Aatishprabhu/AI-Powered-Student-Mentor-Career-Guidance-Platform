@@ -1,0 +1,9 @@
+django
+psycopg2-binary
+pillow
+python-dotenv
+gunicorn
+whitenoise
+google-generativeai
+PyPDF2
+requests

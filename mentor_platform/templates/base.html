@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Mentor Platform{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div>
+        <p class="site-title">Mentor Platform</p>
+        <p style="color: var(--muted); margin: 0.25rem 0 0;">AI-powered mentoring, career guidance, and skill growth.</p>
+      </div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="{% url 'dashboard:home' %}">Home</a></li>
+          <li><a href="{% url 'assessments:list' %}">Assessments</a></li>
+          <li><a href="{% url 'projects:list' %}">Projects</a></li>
+          <li><a href="{% url 'placements:list' %}">Placements</a></li>
+          <li><a href="{% url 'mentor:chat' %}">Mentor</a></li>
+          <li><a href="{% url 'analytics:progress_data' %}">Analytics</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <p>Built for student mentorship and career growth. All functionality is integrated with Django backend.</p>
+    </footer>
+  </div>
+</body>
+</html>

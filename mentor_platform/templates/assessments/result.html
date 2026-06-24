@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Assessment Result | Mentor Platform{% endblock %}
+{% block content %}
+<div class="hero" style="padding: 2rem 0;">
+  <div>
+    <h1>Assessment result</h1>
+    <p>You scored {{ result.score }} out of {{ result.assessment.total_marks }} on {{ result.assessment.title }}.</p>
+  </div>
+</div>
+
+<div class="card-grid" style="margin-top: 1rem;">
+  <div class="card">
+    <h3>Performance</h3>
+    <p><strong>{{ percentage }}%</strong></p>
+  </div>
+  <div class="card">
+    <h3>Level</h3>
+    <p>{{ result.level|title }}</p>
+  </div>
+  <div class="card">
+    <h3>Skill</h3>
+    <p>{{ result.assessment.skill.name }}</p>
+  </div>
+</div>
+
+<div class="form-card" style="margin-top: 1.5rem;">
+  <h2>Next steps</h2>
+  <p>Continue practicing with recommended projects, update your roadmap, or chat with your mentor for feedback.</p>
+  <div class="actions" style="margin-top: 1rem;">
+    <a class="btn btn-primary" href="{% url 'projects:list' %}">View Projects</a>
+    <a class="btn btn-secondary" href="{% url 'mentor:chat' %}">Talk with mentor</a>
+  </div>
+</div>
+{% endblock %}
