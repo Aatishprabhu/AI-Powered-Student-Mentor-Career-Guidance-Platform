@@ -26,13 +26,13 @@
           <div class="stat-hint">Completed assessments</div>
         </div>
 
-        <div class="stat-card" style="background: linear-gradient(180deg, rgba(34, 197, 94, 0.12), rgba(255, 255, 255, 0.9)); border-color: rgba(34, 197, 94, 0.18);">
-          <div class="stat-label" style="color:#166534;">Placements</div>
+        <div class="stat-card green">
+          <div class="stat-label">Placements</div>
           <strong>{{ stats.total_applications|default:0 }}</strong>
           <div class="stat-hint">{{ stats.offers_received|default:0 }} offers received</div>
         </div>
 
-        <div class="stat-card" style="background: linear-gradient(180deg, rgba(37, 99, 235, 0.12), rgba(255, 255, 255, 0.9));">
+        <div class="stat-card roadmap">
           <div class="stat-label">Roadmap</div>
           <strong>{{ stats.roadmap_progress|default:0 }}%</strong>
           <div class="stat-hint">
@@ -71,7 +71,7 @@
     <div class="action-grid">
       <div class="action-card">
         <div class="action-top">
-          <span class="badge" style="background:#eef2ff; color:#3730a3;">1</span>
+          <span class="badge step-1">1</span>
           <div class="action-name">Assess</div>
         </div>
         <p class="action-desc">Take a short assessment to level up your roadmap recommendations.</p>
@@ -80,7 +80,7 @@
 
       <div class="action-card">
         <div class="action-top">
-          <span class="badge" style="background:#e0f2fe; color:#0369a1;">2</span>
+          <span class="badge step-2">2</span>
           <div class="action-name">Build</div>
         </div>
         <p class="action-desc">Work on a project that matches your current skill focus.</p>
@@ -89,7 +89,7 @@
 
       <div class="action-card">
         <div class="action-top">
-          <span class="badge" style="background:#dcfce7; color:#166534;">3</span>
+          <span class="badge step-3">3</span>
           <div class="action-name">Apply</div>
         </div>
         <p class="action-desc">Review your placement applications and keep momentum.</p>
@@ -140,12 +140,9 @@
 <section class="card roadmap-card">
   <div class="roadmap-head">
     <div>
-      <h2 class="section-title" style="margin-bottom:0;">Roadmap focus</h2>
-      <p class="muted" style="margin:0.25rem 0 0;">
-        Your current recommended skill path.
-      </p>
+      <h2 class="section-title">Roadmap focus</h2>
+      <p class="muted roadmap-caption">Your current recommended skill path.</p>
     </div>
-
     <a class="btn btn-secondary" href="{% url 'analytics:progress_data' %}">View analytics</a>
   </div>
 

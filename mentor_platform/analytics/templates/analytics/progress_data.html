@@ -29,7 +29,7 @@
 </div>
 
 <div class="card-grid">
-  <div class="card" style="grid-column: span 2;">
+  <div class="card card-span-2">
     <div class="section-title">Performance Over Time</div>
     {% if score_series %}
       <div class="timeline">
@@ -40,7 +40,9 @@
               <span class="badge">{{ item.level }}</span>
             </div>
             <div class="progress-row">
-              <div class="progress-bar" style="width: {{ item.score_pct }}%;"></div>
+              <div class="progress-track">
+                <div class="progress-fill" style="--progress: {{ item.score_pct }}%;"></div>
+              </div>
               <span class="progress-label">{{ item.score_pct }}%</span>
             </div>
             <div class="timeline-meta">{{ item.assessment }} · {{ item.skill }}</div>
@@ -63,7 +65,7 @@
               <span>{{ skill.attempts }} attempt{{ skill.attempts|pluralize }}</span>
             </div>
             <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: {{ skill.avg_score }}%;"></div>
+              <div class="skill-bar" style="--progress: {{ skill.avg_score }}%;"></div>
               <span class="skill-score">{{ skill.avg_score }}%</span>
             </div>
           </div>
@@ -107,87 +109,4 @@
   {% endif %}
 </div>
 
-<style>
-.metric {
-  margin: 1rem 0 0;
-  font-size: 2.5rem;
-  color: var(--primary);
-  font-weight: 700;
-}
-.timeline {
-  display: grid;
-  gap: 1rem;
-}
-.timeline-item {
-  padding: 1rem;
-  background: var(--surface-2);
-  border-radius: var(--radius-sm);
-}
-.timeline-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-.progress-row {
-  display: grid;
-  gap: 0.5rem;
-}
-.progress-bar {
-  height: 1.1rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), #7dd3fc);
-}
-.progress-label {
-  font-size: 0.95rem;
-  color: var(--muted);
-  text-align: right;
-}
-.timeline-meta {
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-.skill-list {
-  display: grid;
-  gap: 1rem;
-}
-.skill-item {
-  display: grid;
-  gap: 0.5rem;
-}
-.skill-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  color: var(--muted);
-}
-.skill-bar-wrap {
-  position: relative;
-  background: #e2e8f0;
-  border-radius: 999px;
-  height: 1rem;
-}
-.skill-bar {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #60a5fa, #3b82f6);
-}
-.skill-score {
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.85rem;
-  color: #ffffff;
-}
-.badge {
-  background: rgba(59, 130, 246, 0.12);
-  color: #1d4ed8;
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-</style>
 {% endblock %}
