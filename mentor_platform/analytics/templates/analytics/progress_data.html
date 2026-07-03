@@ -3,110 +3,157 @@
 {% block title %}Progress Analytics{% endblock %}
 
 {% block content %}
-<div class="page-title">
-  <h1>Progress Analytics</h1>
-  <p>Track your assessment performance, skill growth, and placement readiness in one place.</p>
-</div>
+<div class="analytics-page">
 
-<div class="card-grid">
-  <div class="card">
-    <h3>Total Assessments</h3>
-    <p class="metric">{{ total_assessments }}</p>
-  </div>
-  <div class="card">
-    <h3>Average Score</h3>
-    <p class="metric">{{ average_score }}%</p>
-  </div>
-  <div class="card">
-    <h3>Latest Level</h3>
-    <p class="metric">{{ latest_level }}</p>
-  </div>
-  <div class="card">
-    <h3>Placement Status</h3>
-    <p class="metric">{{ placement_data.interview }} interviews</p>
-    <p class="muted">Offers: {{ placement_data.offer }} · Rejected: {{ placement_data.rejected }}</p>
-  </div>
-</div>
+  <header class="analytics-header">
+    <p class="kicker">Your Growth</p>
+    <h1 class="analytics-title">Progress Analytics</h1>
+    <p class="analytics-subtitle">Track your assessment performance, skill growth, and placement readiness in one place.</p>
+  </header>
 
-<div class="card-grid">
-  <div class="card card-span-2">
-    <div class="section-title">Performance Over Time</div>
-    {% if score_series %}
-      <div class="timeline">
-        {% for item in score_series %}
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <span>{{ item.date }}</span>
-              <span class="badge">{{ item.level }}</span>
-            </div>
-            <div class="progress-row">
-              <div class="progress-track">
-                <div class="progress-fill" style="--progress: {{ item.score_pct }}%;"></div>
-              </div>
-              <span class="progress-label">{{ item.score_pct }}%</span>
-            </div>
-            <div class="timeline-meta">{{ item.assessment }} · {{ item.skill }}</div>
-          </div>
-        {% endfor %}
+  <div class="analytics-stats">
+    <div class="analytics-stat-card">
+      <div class="analytics-stat-icon icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10"/><path d="M12 19V4"/><path d="M20 19v-7"/></svg>
       </div>
-    {% else %}
-      <p>No assessment results available yet. Take an assessment to populate your analytics.</p>
-    {% endif %}
-  </div>
-
-  <div class="card">
-    <div class="section-title">Skill Performance</div>
-    {% if skill_performance %}
-      <div class="skill-list">
-        {% for skill in skill_performance %}
-          <div class="skill-item">
-            <div class="skill-meta">
-              <strong>{{ skill.skill }}</strong>
-              <span>{{ skill.attempts }} attempt{{ skill.attempts|pluralize }}</span>
-            </div>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="--progress: {{ skill.avg_score }}%;"></div>
-              <span class="skill-score">{{ skill.avg_score }}%</span>
-            </div>
-          </div>
-        {% endfor %}
+      <div class="analytics-stat-body">
+        <span class="analytics-stat-label">Total Assessments</span>
+        <strong class="analytics-stat-value">{{ total_assessments }}</strong>
       </div>
-    {% else %}
-      <p>You have no skill data yet. Complete an assessment to start tracking skill growth.</p>
-    {% endif %}
-  </div>
-</div>
-
-<div class="card">
-  <div class="section-title">Recent Results</div>
-  {% if recent_results %}
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Assessment</th>
-            <th>Skill</th>
-            <th>Score</th>
-            <th>Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in recent_results %}
-            <tr>
-              <td>{{ item.date }}</td>
-              <td>{{ item.assessment }}</td>
-              <td>{{ item.skill }}</td>
-              <td>{{ item.score_pct }}%</td>
-              <td>{{ item.level }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
     </div>
-  {% else %}
-    <p>No recent assessment results available yet.</p>
-  {% endif %}
-</div>
 
+    <div class="analytics-stat-card">
+      <div class="analytics-stat-icon icon-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      </div>
+      <div class="analytics-stat-body">
+        <span class="analytics-stat-label">Average Score</span>
+        <strong class="analytics-stat-value">{{ average_score }}%</strong>
+      </div>
+    </div>
+
+    <div class="analytics-stat-card">
+      <div class="analytics-stat-icon icon-amber">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.2 6.7.5-5.1 4.4 1.6 6.6L12 16.3 6.2 19.7l1.6-6.6-5.1-4.4 6.7-.5z"/></svg>
+      </div>
+      <div class="analytics-stat-body">
+        <span class="analytics-stat-label">Latest Level</span>
+        <strong class="analytics-stat-value">{{ latest_level }}</strong>
+      </div>
+    </div>
+
+    <div class="analytics-stat-card">
+      <div class="analytics-stat-icon icon-indigo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      </div>
+      <div class="analytics-stat-body">
+        <span class="analytics-stat-label">Placement Status</span>
+        <strong class="analytics-stat-value">{{ placement_data.interview }} interview{{ placement_data.interview|pluralize }}</strong>
+        <span class="analytics-stat-sub">Offers: {{ placement_data.offer }} · Rejected: {{ placement_data.rejected }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="analytics-grid">
+    <section class="analytics-card analytics-card-chart">
+      <div class="analytics-card-head">
+        <h2 class="section-title">Performance Over Time</h2>
+        {% if score_series %}
+          <span class="analytics-card-tag">{{ score_series|length }} attempt{{ score_series|length|pluralize }}</span>
+        {% endif %}
+      </div>
+
+      {% if score_series %}
+        <div class="analytics-chart">
+          {% for item in score_series %}
+            <div class="analytics-bar-col">
+              <span class="analytics-bar-value">{{ item.score_pct }}%</span>
+              <div class="analytics-bar analytics-bar-{{ item.level|lower }}"
+                   style="height: {{ item.score_pct }}%;"
+                   title="{{ item.assessment }} · {{ item.skill }} · {{ item.score_pct }}%"></div>
+              <span class="analytics-bar-label">{{ item.date }}</span>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="analytics-legend">
+          <span class="analytics-legend-item"><i class="analytics-dot analytics-bar-beginner"></i>Beginner</span>
+          <span class="analytics-legend-item"><i class="analytics-dot analytics-bar-intermediate"></i>Intermediate</span>
+          <span class="analytics-legend-item"><i class="analytics-dot analytics-bar-advanced"></i>Advanced</span>
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <p class="empty-title">No assessment data yet</p>
+          <p class="empty-subtitle">No assessment results available yet. Take an assessment to populate your analytics.</p>
+        </div>
+      {% endif %}
+    </section>
+
+    <section class="analytics-card analytics-card-skills">
+      <div class="analytics-card-head">
+        <h2 class="section-title">Skill Performance</h2>
+      </div>
+
+      {% if skill_performance %}
+        <div class="analytics-skill-list">
+          {% for skill in skill_performance %}
+            <div class="analytics-skill-item">
+              <div class="analytics-skill-top">
+                <strong>{{ skill.skill }}</strong>
+                <span class="analytics-skill-score">{{ skill.avg_score }}%</span>
+              </div>
+              <div class="analytics-skill-bar-track">
+                <div class="analytics-skill-bar-fill" style="width: {{ skill.avg_score }}%;"></div>
+              </div>
+              <span class="analytics-skill-meta">{{ skill.attempts }} attempt{{ skill.attempts|pluralize }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <p class="empty-title">No skill data yet</p>
+          <p class="empty-subtitle">You have no skill data yet. Complete an assessment to start tracking skill growth.</p>
+        </div>
+      {% endif %}
+    </section>
+  </div>
+
+  <section class="analytics-card analytics-card-table">
+    <div class="analytics-card-head">
+      <h2 class="section-title">Recent Results</h2>
+    </div>
+
+    {% if recent_results %}
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Assessment</th>
+              <th>Skill</th>
+              <th>Score</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in recent_results %}
+              <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.assessment }}</td>
+                <td>{{ item.skill }}</td>
+                <td class="numeric">{{ item.score_pct }}%</td>
+                <td><span class="level-badge {{ item.level|lower }}">{{ item.level }}</span></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p class="empty-title">No recent results</p>
+        <p class="empty-subtitle">No recent assessment results available yet.</p>
+      </div>
+    {% endif %}
+  </section>
+
+</div>
 {% endblock %}

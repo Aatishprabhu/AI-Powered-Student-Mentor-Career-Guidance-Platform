@@ -89,7 +89,7 @@ PROJECT_TEMPLATES = [
         'github_template': 'https://github.com/topics/flashcard-app?l=python',
         'resources': [
             'https://en.wikipedia.org/wiki/Spaced_repetition',
-            'https://realpython.com/django-forms/,',
+            'https://realpython.com/,',
             'https://www.chartjs.org/'
         ],
     },

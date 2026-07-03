@@ -1,19 +1,19 @@
 :root {
-  --bg: #eef2ff;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f4f7ff;
-  --text: #0f172a;
-  --muted: #475569;
-  --primary: #4f46e5;
-  --primary-2: #7c3aed;
-  --primary-3: #111827;
-  --accent: #2563eb;
-  --success: #22c55e;
+  --surface-2: #f9fafb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #0066ff;
+  --primary-2: #0052cc;
+  --primary-3: #1f2937;
+  --accent: #0066ff;
+  --success: #10b981;
   --danger: #ef4444;
-  --border: rgba(148, 163, 184, 0.28);
-  --shadow: 0 30px 70px rgba(15, 23, 42, 0.12);
-  --radius: 24px;
-  --radius-sm: 16px;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --radius-sm: 6px;
 }
 
 * {
@@ -23,8 +23,8 @@
 html, body {
   margin: 0;
   min-height: 100%;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #eef2ff 0%, #f5f7ff 40%, #ffffff 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: #ffffff;
   color: var(--text);
 }
 
@@ -64,16 +64,22 @@ button, input, select, textarea {
 
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.25rem;
+  flex-direction: column;
+  gap: 1.5rem;
   padding: 1.5rem 0;
-  flex-wrap: wrap;
 }
 
 .header > div {
-  flex: 1 1 18rem;
-  min-width: 0;
+  width: 100%;
+}
+
+.header > nav {
+  width: 100%;
+  order: 2;
+}
+
+.header > div {
+  order: 1;
 }
 
 .hero-title,
@@ -85,27 +91,17 @@ button, input, select, textarea {
   margin: 0;
   font-size: clamp(2.5rem, 4vw, 3.4rem);
   letter-spacing: -0.06em;
-  color: var(--primary-3);
+  color: #0066ff;
   text-transform: uppercase;
   font-weight: 800;
-  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 55%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 10px 18px rgba(37, 99, 235, 0.25));
 }
 
 .site-subtitle {
   margin: 0.75rem 0 0;
   color: #334155;
-  max-width: 44rem;
   line-height: 1.8;
   font-size: 1.05rem;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.78);
-  padding: 1rem 1.25rem;
-  border-radius: 28px;
-  border: 1px solid rgba(79, 70, 229, 0.12);
-  box-shadow: 0 24px 60px rgba(79, 70, 229, 0.08);
 }
 
 @keyframes pop-in {
@@ -125,18 +121,16 @@ button, input, select, textarea {
 nav {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  flex: 0 1 auto;
-  min-width: 0;
+  justify-content: center;
+  width: 100%;
 }
 
 .nav-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
-  justify-content: end;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 0.7rem;
-  row-gap: 0.95rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -185,8 +179,7 @@ nav {
   width: min(100%, 1120px);
   max-width: 1120px;
   margin: 0 auto;
-  background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.08), transparent 30%),
-              radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.08), transparent 28%);
+  background: #f9fafb;
 }
 
 .page-shell {
@@ -209,10 +202,10 @@ nav {
   padding: 2.5rem;
   min-height: 380px;
   justify-items: stretch;
-  background: linear-gradient(180deg, rgba(79, 70, 229, 0.14), rgba(37, 99, 235, 0.07));
-  border-radius: 32px;
-  border: 1px solid rgba(79, 70, 229, 0.16);
-}
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}}
 
 .hero-dashboard .hero-copy {
   display: grid;
@@ -255,9 +248,9 @@ nav {
 
 .hero-dashboard .stat-card {
   padding: 1.6rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), #f8fbff);
-  border: 1px solid rgba(79, 70, 229, 0.12);
-  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
 }
 
 .hero-dashboard .stat-card strong {
@@ -268,7 +261,7 @@ nav {
 }
 
 .hero-dashboard .stat-label {
-  color: #475569;
+  color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.78rem;
@@ -277,28 +270,28 @@ nav {
 
 .hero-dashboard .stat-hint {
   margin-top: 0.7rem;
-  color: #64748b;
+  color: #6b7280;
 }
 
 .hero-dashboard .progress-shell {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(79, 70, 229, 0.14);
-  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
   padding: 1.4rem;
-}
+}}
 
 .hero-dashboard .progress-title {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.79rem;
-  color: #475569;
+  color: #6b7280;
   font-weight: 700;
-}
+}}
 
 .hero-dashboard .progress-subtitle {
   margin-top: 0.35rem;
-  color: #64748b;
-}
+  color: #6b7280;
+}}
 
 .hero-dashboard .progress-percent {
   font-size: 1.45rem;
@@ -308,14 +301,14 @@ nav {
 
 .hero-dashboard .progress-bar {
   margin-top: 1rem;
-  background: rgba(79, 70, 229, 0.12);
-  border-radius: 999px;
+  background: #e5e7eb;
+  border-radius: 4px;
   overflow: hidden;
-  height: 14px;
-}
+  height: 8px;
+}}
 
 .hero-dashboard .progress-bar-fill {
-  background: linear-gradient(90deg, #4f46e5, #2563eb);
+  background: #0066ff;
   height: 100%;
   border-radius: inherit;
 }
@@ -335,7 +328,7 @@ nav {
 }
 
 .hero-dashboard .actions .btn {
-  min-width: 170px;
+  min-width: auto;
 }
 
 .hero-dashboard .progress-row {
@@ -598,20 +591,21 @@ nav {
 
   .nav-list {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    row-gap: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0.85rem;
+    overflow-x: auto;
   }
 
   .nav-list li {
-    width: 100%;
+    width: auto;
   }
 
   .nav-list a {
-    width: 100%;
+    width: auto;
     padding: 0.85rem 1rem;
-    white-space: normal;
+    white-space: nowrap;
     justify-content: center;
     text-align: center;
   }
@@ -740,24 +734,26 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.95rem 1.3rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   border: none;
-  border-radius: 999px;
+  border-radius: 8px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #4f46e5, #2563eb);
+  background: #0066ff;
   color: #ffffff;
-  box-shadow: 0 16px 30px rgba(79, 70, 229, 0.17);
-}
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}}
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 34px rgba(79, 70, 229, 0.22);
-  background: linear-gradient(135deg, #4338ca, #2563eb);
-}
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background: #0052cc;
+}}
 
 .btn-secondary {
   background: rgba(79, 70, 229, 0.08);
@@ -2491,4 +2487,280 @@ nav {
     margin-top:100px;
 
 
+}
+/* ==========================================================
+   PROGRESS ANALYTICS PAGE — append this block to the end of
+   your existing stylesheet. Nothing above is touched; these
+   are all new, page-scoped classes (prefixed "analytics-")
+   plus one badge-class reuse that already exists (level-badge).
+   ========================================================== */
+
+.analytics-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0 3rem;
+}
+
+/* header */
+.analytics-header {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 60rem;
+}
+
+.analytics-title {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--primary-3);
+}
+
+.analytics-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* stat cards */
+.analytics-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.analytics-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.analytics-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+}
+
+.analytics-stat-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analytics-stat-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.analytics-stat-icon.icon-blue { background: rgba(0, 102, 255, 0.1); color: var(--primary); }
+.analytics-stat-icon.icon-green { background: rgba(16, 185, 129, 0.12); color: var(--success); }
+.analytics-stat-icon.icon-amber { background: rgba(245, 158, 11, 0.14); color: #b45309; }
+.analytics-stat-icon.icon-indigo { background: rgba(99, 102, 241, 0.12); color: #4f46e5; }
+
+.analytics-stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.analytics-stat-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.analytics-stat-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--primary-3);
+  line-height: 1.15;
+}
+
+.analytics-stat-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
+/* main grid: chart + skills */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.analytics-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.analytics-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.analytics-card-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(0, 102, 255, 0.08);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* bar chart */
+.analytics-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.85rem;
+  height: 220px;
+  padding: 0 0.25rem;
+  overflow-x: auto;
+}
+
+.analytics-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 0 36px;
+  min-width: 36px;
+  height: 100%;
+  gap: 0.4rem;
+}
+
+.analytics-bar-value {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.analytics-bar {
+  width: 60%;
+  min-width: 18px;
+  border-radius: 6px 6px 2px 2px;
+  background: var(--primary);
+  transition: height 0.4s ease;
+}
+
+.analytics-bar-beginner { background: #f59e0b; }
+.analytics-bar-intermediate { background: var(--success); }
+.analytics-bar-advanced { background: var(--primary); }
+
+.analytics-bar-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.analytics-legend {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.analytics-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.analytics-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* skill performance list */
+.analytics-skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.analytics-skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.analytics-skill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.analytics-skill-score {
+  font-weight: 700;
+  color: var(--primary-3);
+}
+
+.analytics-skill-bar-track {
+  height: 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.analytics-skill-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary), #3b82f6);
+}
+
+.analytics-skill-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* recent results table card */
+.analytics-card-table {
+  padding: 1.75rem;
+}
+
+/* responsive */
+@media (max-width: 960px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .analytics-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .analytics-stat-value {
+    font-size: 1.5rem;
+  }
 }
